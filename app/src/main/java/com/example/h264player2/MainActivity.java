@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,22 +12,34 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.Button;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private SurfaceView mSurfaceView;
     private H264Player mH264Player;
+    private Button mPlayH264;
+    private Button mScreenRecord;
+    private Button mCameraRecord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         checkPermission();
-        initPlayer();
+        initViews();
+    }
+
+    private void initViews() {
+        mPlayH264 = findViewById(R.id.h264_player);
+        mScreenRecord = findViewById(R.id.screen_record);
+        mCameraRecord = findViewById(R.id.camera_record);
+        mPlayH264.setOnClickListener(this);
+        mScreenRecord.setOnClickListener(this);
+        mCameraRecord.setOnClickListener(this);
     }
 
 
@@ -41,45 +54,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void initPlayer() {
-        mSurfaceView = findViewById(R.id.surface_view);
-        String path = getFromAssets("test.h264");
-        mSurfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
-                Surface surface = surfaceHolder.getSurface();
-                mH264Player = new H264Player(MainActivity.this, path, surface);
-                mH264Player.start();
-            }
-
-            @Override
-            public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
-
-            }
-        });
+    private void startIntent(Class className) {
+        Intent intent = new Intent(this, className);
+        startActivity(intent);
     }
 
 
-    public String getFromAssets(String fileName) {
-        try {
-            InputStreamReader inputReader = new InputStreamReader(getResources().getAssets().open(fileName));
-            BufferedReader bufReader = new BufferedReader(inputReader);
-            String line = "";
-            String Result = "";
-            while ((line = bufReader.readLine()) != null)
-                Result += line;
-            return Result;
-        } catch (Exception e) {
-            e.printStackTrace();
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.h264_player:
+                startIntent(H264PlayerActivity.class);
+                break;
+            case R.id.screen_record:
+                startIntent(ScreenActivity.class);
+                break;
+            case R.id.camera_record:
+
+                break;
         }
-
-        return "";
     }
-
-
 }
