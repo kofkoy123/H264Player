@@ -1,6 +1,5 @@
-package com.example.h264player2;
+package com.example.h264player2.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
@@ -8,14 +7,12 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Surface;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import com.example.h264player2.code.H264Player;
+import com.example.h264player2.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,7 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA,
+                    Manifest.permission.RECORD_AUDIO
             }, 1);
         }
     }
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startIntent(ScreenActivity.class);
                 break;
             case R.id.camera_record:
-
+                startIntent(CameraActivity.class);
                 break;
         }
     }

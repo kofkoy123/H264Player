@@ -1,4 +1,4 @@
-package com.example.h264player2;
+package com.example.h264player2.code;
 
 import android.hardware.display.DisplayManager;
 import android.media.MediaCodec;
@@ -6,6 +6,8 @@ import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.media.projection.MediaProjection;
 import android.view.Surface;
+
+import com.example.h264player2.FileUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

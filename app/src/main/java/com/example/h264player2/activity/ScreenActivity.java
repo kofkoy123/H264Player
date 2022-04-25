@@ -1,4 +1,4 @@
-package com.example.h264player2;
+package com.example.h264player2.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.media.projection.MediaProjectionManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.h264player2.code.H264Encoder;
+import com.example.h264player2.R;
 
 public class ScreenActivity extends AppCompatActivity implements View.OnClickListener {
 

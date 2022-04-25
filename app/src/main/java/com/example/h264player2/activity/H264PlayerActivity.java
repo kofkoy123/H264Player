@@ -1,4 +1,4 @@
-package com.example.h264player2;
+package com.example.h264player2.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
+
+import com.example.h264player2.code.H264Player;
+import com.example.h264player2.R;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

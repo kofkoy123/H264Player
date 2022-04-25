@@ -1,4 +1,4 @@
-package com.example.h264player2;
+package com.example.h264player2.code;
 
 import android.content.Context;
 import android.media.MediaCodec;
