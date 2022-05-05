@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.CameraActivity">
+    tools:context=".activity.TouPinPushActivity">
 
-  <com.example.h264player2.code.CameraView
-      android:id="@+id/camera_view"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/start_screen"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:text="开始投屏"
+        android:layout_height="wrap_content"/>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

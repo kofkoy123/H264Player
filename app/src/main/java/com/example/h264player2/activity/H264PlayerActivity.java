@@ -14,6 +14,9 @@ import com.example.h264player2.R;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+/**
+ * h264播放器
+ */
 public class H264PlayerActivity extends AppCompatActivity {
 
     private SurfaceView mSurfaceView;

@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button mPlayH264;
     private Button mScreenRecord;
     private Button mCameraRecord;
+    private Button mProjectionScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mPlayH264 = findViewById(R.id.h264_player);
         mScreenRecord = findViewById(R.id.screen_record);
         mCameraRecord = findViewById(R.id.camera_record);
+        mProjectionScreen = findViewById(R.id.screen_projection);
         mPlayH264.setOnClickListener(this);
         mScreenRecord.setOnClickListener(this);
         mCameraRecord.setOnClickListener(this);
+        mProjectionScreen.setOnClickListener(this);
     }
 
 
@@ -70,6 +73,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.camera_record:
                 startIntent(CameraActivity.class);
+                break;
+            case R.id.screen_projection:
+
                 break;
         }
     }

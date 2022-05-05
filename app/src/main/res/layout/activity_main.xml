@@ -8,31 +8,34 @@
     tools:context=".activity.MainActivity">
 
     <Button
-
         android:id="@+id/h264_player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="播放H264"
-
         />
 
     <Button
-
         android:id="@+id/screen_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="屏幕录制"
-
         />
 
 
     <Button
-
         android:id="@+id/camera_record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="摄像头录制"
-
         />
+
+    <Button
+        android:id="@+id/screen_projection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="投屏"
+        />
+
+
 
 </LinearLayout>

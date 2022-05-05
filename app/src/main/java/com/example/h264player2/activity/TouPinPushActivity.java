@@ -12,43 +12,41 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.h264player2.code.H264Encoder;
 import com.example.h264player2.R;
+import com.example.h264player2.socket.PushSocketLive;
 
 /**
- * 录屏
+ * 投屏推流端
  */
-public class ScreenActivity extends AppCompatActivity implements View.OnClickListener {
+public class TouPinPushActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mStartView;
+
     private MediaProjectionManager mMediaProjectionManager;
+    private Button mStartScreen;
+    private PushSocketLive mSocketLive;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_screen);
-        initViews();
+        setContentView(R.layout.activity_projection_screen);
 
+        mStartScreen = findViewById(R.id.start_screen);
+        mStartScreen.setOnClickListener(this);
     }
+
 
     private void applyRecordPermission() {
-         mMediaProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
+        mMediaProjectionManager = (MediaProjectionManager) getSystemService(Context.MEDIA_PROJECTION_SERVICE);
         //是否同意录屏
-        Intent intent= mMediaProjectionManager.createScreenCaptureIntent();
-        startActivityForResult(intent,1);
-
+        Intent intent = mMediaProjectionManager.createScreenCaptureIntent();
+        startActivityForResult(intent, 1);
     }
 
-    private void initViews() {
-        mStartView=findViewById(R.id.start_record);
-        mStartView.setOnClickListener(this);
-
-    }
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.start_record:
+        switch (view.getId()) {
+            case R.id.start_screen:
                 applyRecordPermission();
                 break;
         }
@@ -62,9 +60,10 @@ public class ScreenActivity extends AppCompatActivity implements View.OnClickLis
             if (requestCode == 1){
                 MediaProjection mediaProjection =  mMediaProjectionManager.getMediaProjection(resultCode,data);
                 //用户同意录屏
-                H264Encoder h264Encoder = new H264Encoder(mediaProjection);
-                h264Encoder.start();
+                mSocketLive = new PushSocketLive();
+                mSocketLive.startLive(mediaProjection);
             }
         }
     }
+
 }
